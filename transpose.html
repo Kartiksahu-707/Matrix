@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matrix Transpose</title>
+    <link href="multiply.css" rel="stylesheet">
+    <script>
+        function transposeMatrix() {
+            let matrix = [];
+            let result = [];
+
+            // Get values from input fields and convert them to a matrix
+            let rows = parseInt(document.getElementById('rows').value);
+            let cols = parseInt(document.getElementById('cols').value);
+
+            // Populate the matrix from input fields
+            for (let i = 0; i < rows; i++) {
+                matrix[i] = [];
+                for (let j = 0; j < cols; j++) {
+                    matrix[i][j] = parseInt(document.getElementById('matrix_' + i + '_' + j).value);
+                }
+            }
+
+            // Compute the transpose of the matrix
+            for (let i = 0; i < cols; i++) {
+                result[i] = [];
+                for (let j = 0; j < rows; j++) {
+                    result[i][j] = matrix[j][i];
+                }
+            }
+
+            // Display the result in the HTML table
+            let resultTable = document.getElementById('result');
+            resultTable.innerHTML = '';
+            for (let i = 0; i < cols; i++) {
+                let row = resultTable.insertRow(i);
+                for (let j = 0; j < rows; j++) {
+                    let cell = row.insertCell(j);
+                    cell.innerHTML = result[i][j];
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Matrix Transpose</h1>
+
+    <div class="pading">
+        <h2>Enter Matrix:</h2>
+        <label><h3>Rows: </h3><input type="number" id="rows"></label>
+        <label><h3>Columns: </h3><input type="number" id="cols"></label>
+        <br><br>
+        <table align="center" id="matrix"></table>
+    </div>
+    <br><br>
+    <button class="buttons" onclick="transposeMatrix()">Transpose Matrix</button>
+
+    <div>
+        <h2>Transpose Of Matrix : </h2>
+        <table class="resultMat" id="result"></table>
+    </div>
+
+    <script>
+        // Function to create matrix input fields
+        function createMatrixInput(rows, cols) {
+            let matrixTable = document.getElementById('matrix');
+            matrixTable.innerHTML = '';
+            for (let i = 0; i < rows; i++) {
+                let row = matrixTable.insertRow(i);
+                for (let j = 0; j < cols; j++) {
+                    let cell = row.insertCell(j);
+                    let input = document.createElement('input');
+                    input.type = 'number';
+                    input.id = 'matrix_' + i + '_' + j;
+                    cell.appendChild(input);
+                }
+            }
+        }
+
+        // Event listeners to dynamically create matrix input fields
+        document.getElementById('rows').addEventListener('input', function() {
+            let rows = parseInt(document.getElementById('rows').value);
+            let cols = parseInt(document.getElementById('cols').value);
+            createMatrixInput(rows, cols);
+        });
+
+        document.getElementById('cols').addEventListener('input', function() {
+            let rows = parseInt(document.getElementById('rows').value);
+            let cols = parseInt(document.getElementById('cols').value);
+            createMatrixInput(rows, cols);
+        });
+    </script>
+</body>
+</html>
