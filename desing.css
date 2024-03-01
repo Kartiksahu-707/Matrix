@@ -45,3 +45,23 @@ background-size: 460px,auto;
   text-decoration: none;
   
 }
+
+@media (min-width : 500px) and (max-width : 1080px) {
+  .button{
+    padding: 50px;
+    background-color: #a82bf0;
+    transition: transform .2s;
+    width: 500px;
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } 
+h3{
+  font-size: 60px;
+}
+h1{
+  font-size: 150px;
+}
+}
